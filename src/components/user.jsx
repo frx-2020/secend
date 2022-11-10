@@ -10,6 +10,7 @@ class User extends Component {
   async componentDidMount() {
     const repo = await axios.get("https://reqres.in/api/users");
     this.setState({ users: repo.data.data, flag: false });
+    
   }
   render() {
     return (
@@ -40,7 +41,7 @@ class User extends Component {
                   <div className="row">
                     <div className="col-6">
                       <button
-                        onClick={this.handleUpdate}
+                        onClick={()=>{this.handleUpdate(item)}}
                         className="btn btn-sm btn-info"
                       >
                         Update
@@ -48,7 +49,7 @@ class User extends Component {
                     </div>
                     <div className="col-6">
                       <button
-                        onClick={this.handleDelete}
+                        onClick={()=>{this.handleDelete(item)}}
                         className="btn btn-sm btn-danger"
                       >
                         Delete
@@ -69,7 +70,7 @@ class User extends Component {
         first_name:"reza",
         last_name:"rahmani",
         email:"reza86@yahoo.com",
-        avatar:"https;//"//adress 
+        avatar:"https://picsum.photos/200"
     }
     const response =await axios.post('https://reqres.in/api/users',newUser);
      // console.log(response.data);
@@ -86,8 +87,20 @@ class User extends Component {
 
 
   }
-  handleUpdate() {}
-  handleDelete() {}
+  handleUpdate=async(item)=> {
+  item.first_name='name-edited';
+  const response =await axios.put(`https://reqres.in/api/users/${item.id}`);
+
+  const updetedUsers=[...this.state.users];
+  const index=updetedUsers.indexOf(item);
+  updetedUsers[index]={...item};
+  this.setState({users:updetedUsers})
+  }
+  handleDelete=async(item)=> {
+   const rsponse= await axios.delete(`https://reqres.in/api/users/${item.id}`);
+    const newUsers=this.state.users.filter((i)=>(i.id !==item.id))
+    this.setState({users:newUsers});
+  }
 }
 
 export default User;
