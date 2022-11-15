@@ -8,10 +8,13 @@ class Users extends Component {
     users: [],
     flag: true,
   };
+
+
+
   async componentDidMount() {
     const repo = await axios.get("https://reqres.in/api/users");
     this.setState({ users: repo.data.data, flag: false });
-    
+   
   }
   render() {
     return (
@@ -102,6 +105,7 @@ class Users extends Component {
    const rsponse= await axios.delete(`https://reqres.in/api/users/${item.id}`);
     const newUsers=this.state.users.filter((i)=>(i.id !==item.id))
     this.setState({users:newUsers});
+    
   }
 }
 
