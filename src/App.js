@@ -1,11 +1,12 @@
 import React, { Component } from "react";
-import User from "./components/user";
+import Users from "./components/users";
 import Navbar from "./components/navbar";
 import { Route, Routes } from "react-router-dom";
 
 import Home from "./components/home";
 import Register from "./components/register";
 import About from "./components/aboutus";
+import Prof from "./components/prof";
 
 class App extends Component {
   render() {
@@ -14,16 +15,13 @@ class App extends Component {
         <Navbar />
 
         <div className="container">
-        <Routes>
-            <Route path="/"          element={<Home/>} />
-            <Route path="/users"       element={<User/>} />
-            <Route path="/register"       element={<Register/>} />
-            <Route path="/about"       element={<About/>} />
-            
+          <Routes>
+            <Route path="/users/:id" element={<Prof />} />
+            <Route path="/" element={<Home />} />
+            <Route path="/users" element={<Users />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/about" element={<About />} />
           </Routes>
-           
-
-          {/* <User /> */}
         </div>
       </>
     );

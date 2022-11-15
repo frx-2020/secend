@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import axios from "axios";
 import Loading from "./loading/loading";
+import { Link } from "react-router-dom";
 
-class User extends Component {
+class Users extends Component {
   state = {
     users: [],
     flag: true,
@@ -34,10 +35,11 @@ class User extends Component {
                     style={{ borderRadius: "50%", width: "100px" }}
                   />
                   <h5 className="text-info">{item.email}</h5>
+                  <Link     to={`/users/${item.id}`} >
                   <h4>
                     {item.first_name}
                     {item.last_name}
-                  </h4>
+                  </h4></Link>
                   <div className="row">
                     <div className="col-6">
                       <button
@@ -103,4 +105,4 @@ class User extends Component {
   }
 }
 
-export default User;
+export default Users;
