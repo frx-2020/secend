@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 import Users from "./components/users";
 import Navbar from "./components/navbar";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes ,Navigate} from "react-router-dom";
 
 import Home from "./components/home";
 import Register from "./components/register";
 import About from "./components/aboutus";
 import Prof from "./components/prof";
+import Notfound from "./components/notFound";
 
 class App extends Component {
   render() {
@@ -21,6 +22,11 @@ class App extends Component {
             <Route path="/users" element={<Users />} />
             <Route path="/register" element={<Register />} />
             <Route path="/about" element={<About />} />
+            <Route path="/notfound" element={<Notfound/>} />
+            <Route path="/*" element={<Navigate to='/notfound'/>}/> 
+            <Route path="/customer" element={<Navigate to='/users'/>}/> 
+           
+            
           </Routes>
         </div>
       </>

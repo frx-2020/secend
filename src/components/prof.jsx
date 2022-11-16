@@ -1,10 +1,13 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { useLocation, useParams } from "react-router-dom";
+import { useLocation, useParams ,useNavigate} from "react-router-dom";
 import queryString from "query-string";
+
 
 const Prof = (props) => {
   const param = useParams();
+  const history=useNavigate();
+  
   const [item, setuser] = useState({});
 
   const loc = useLocation();
@@ -20,39 +23,18 @@ const Prof = (props) => {
 
   return (
     <div className="col-4 p-5 text-center">
-      <img
-        src={item.avatar}
-        alt="profImg"
-        style={{ borderRadius: "50%", width: "100px" }}
-      />
+        <img
+          src={item.avatar}
+          alt="profImg"
+          style={{ borderRadius: "50%", width: "100px" }}
+        />
       <h5 className="text-info">{item.email}</h5>
 
       <h4>
         {item.first_name}
         {item.last_name}
       </h4>
-      <div className="row">
-        <div className="col-6">
-          <button
-            onClick={() => {
-              this.handleUpdate(item);
-            }}
-            className="btn btn-sm btn-info"
-          >
-            Update
-          </button>
-        </div>
-        <div className="col-6">
-          <button
-            onClick={() => {
-              this.handleDelete(item);
-            }}
-            className="btn btn-sm btn-danger"
-          >
-            Delete
-          </button>
-        </div>
-      </div>
+     <button onClick={()=>{history('/users',{replace:true})}} className="btn  mt-3 btn-primary">users</button>
     </div>
   );
 };
