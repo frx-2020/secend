@@ -1,10 +1,11 @@
 import axios from "axios";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useLocation, useParams ,useNavigate} from "react-router-dom";
 import queryString from "query-string";
 
 
 const Prof = (props) => {
+  const firstName=useRef(null);//-------------------------------ref------------------------------------
   const param = useParams();
   const history=useNavigate();
   
@@ -12,11 +13,13 @@ const Prof = (props) => {
 
   const loc = useLocation();
   console.log(queryString.parse(loc.search));
+  console.log(firstName.current);//----------------------------ref-------------------------------------
 
   useEffect(() => {
     async function xxx() {
       const x = await axios.get(`https://reqres.in/api/users/${param.id}`);
       setuser(x.data.data);
+     
     }
     xxx();
   }, []);
@@ -30,7 +33,7 @@ const Prof = (props) => {
         />
       <h5 className="text-info">{item.email}</h5>
 
-      <h4>
+      <h4 ref={firstName}>
         {item.first_name}
         {item.last_name}
       </h4>
