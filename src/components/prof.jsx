@@ -5,7 +5,7 @@ import queryString from "query-string";
 
 
 const Prof = (props) => {
-  const firstName=useRef(null);//-------------------------------ref------------------------------------
+ 
   const param = useParams();
   const history=useNavigate();
   
@@ -13,7 +13,7 @@ const Prof = (props) => {
 
   const loc = useLocation();
   console.log(queryString.parse(loc.search));
-  console.log(firstName.current);//----------------------------ref-------------------------------------
+  
 
   useEffect(() => {
     async function xxx() {
@@ -33,7 +33,7 @@ const Prof = (props) => {
         />
       <h5 className="text-info">{item.email}</h5>
 
-      <h4 ref={firstName}>
+      <h4>
         {item.first_name}
         {item.last_name}
       </h4>
