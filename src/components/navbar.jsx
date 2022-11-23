@@ -12,15 +12,32 @@ class Navbar extends Component {
     </button>
     <div className="collapse navbar-collapse" id="navbarNav">
       <ul className="navbar-nav">
-        <li className="nav-item">
-          <NavLink className="nav-link" aria-current="page" to="/register">register</NavLink>
-        </li>
+       
         <li className="nav-item">
           <NavLink className="nav-link" to="/users">users</NavLink>
         </li>
-        <li className="nav-item">
-          <NavLink className="nav-link" to="/about">about us</NavLink>
+        {
+         !this.props.user ?(
+          <>
+           <li className="nav-item">
+          <NavLink className="nav-link" aria-current="page" to="/login">log in</NavLink>
         </li>
+        <li className="nav-item">
+          <NavLink className="nav-link" to="/register">register</NavLink>
+        </li>
+          </>
+         ) :(
+          <>
+           <li className="nav-item">
+          <NavLink className="nav-link" aria-current="page" to="/dashboard">dashboard</NavLink>
+        </li>
+        <li className="nav-item">
+          <NavLink className="nav-link" to="/logout">logout</NavLink>
+        </li>
+          </>
+         )
+        }
+       
       
       </ul>
     </div>
