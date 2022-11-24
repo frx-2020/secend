@@ -9,6 +9,7 @@ import Login from "./components/login";
 import Dashboard from "./components/dashboard";
 import Register from "./components/register";
 import Logout from "./components/logout";
+import Protect from "./components/protect";
 
 class App extends Component {
   state={
@@ -52,7 +53,7 @@ class App extends Component {
             <Route path="/notfound" element={<Notfound />} />
             <Route path="/*" element={<Navigate to="/notfound" />} />
             <Route path="/customer" element={<Navigate to="/users" />} />
-            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/dashboard" element={<Protect><Dashboard /></Protect>} />
             <Route path="/logout" element={<Logout />} />
           </Routes>
         </div>
